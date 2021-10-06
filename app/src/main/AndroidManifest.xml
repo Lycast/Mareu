@@ -10,13 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mareu">
         <activity
-            android:name=".UI.user.DetailsMeetingActivity"
+            android:name=".ui_user.AddMeetingActivity"
+            android:parentActivityName=".ui_user.ListMareuActivity"
             android:exported="true" />
         <activity
-            android:name=".UI.user.AddMeetingActivity"
-            android:exported="true" />
-        <activity
-            android:name=".UI.user.ListMareuActivity"
+            android:name=".ui_user.ListMareuActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
