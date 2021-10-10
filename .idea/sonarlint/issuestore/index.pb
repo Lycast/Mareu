@@ -22,3 +22,19 @@ A
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+P
+ app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
+u
+Eapp/src/main/java/anthony/brenon/mareu/service/MeetingApiService.java,0\c\0c047d82e4b2b2df2310d1ce223c87ffeb766895
+z
+Japp/src/main/java/anthony/brenon/mareu/service/DummyMeetingApiService.java,2\5\25a668cadf05a4de925fc1fce17c4c110fabfce0
+p
+@app/src/main/java/anthony/brenon/mareu/service/MeetingsList.java,b\9\b90bb2048c19d39bfe5b9738b846c8f63c3b77fe
+i
+9app/src/main/java/anthony/brenon/mareu/model/Meeting.java,f\3\f37c910f1400c6f53d0b70e6ef19bdba78e04168
+@
+app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+a
+1app/src/main/java/anthony/brenon/mareu/di/DI.java,e\1\e14498cf0a100d40f90ca63e528c20c9d4b64e4a
+m
+=app/src/main/java/anthony/brenon/mareu/callback/Listener.java,9\f\9ffbb09125a71894da9088d4b2aed77f1b929713
