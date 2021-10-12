@@ -31,7 +31,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-<!-- ROOM -->
+<!-- ROOM
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ti_layout_room"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -48,28 +48,32 @@
             android:drawablePadding="20dp"
             android:ems="10"
             android:hint="Room" />
+    </com.google.android.material.textfield.TextInputLayout> -->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/ti_layout_room"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ti_layout_topic">
+
+        <AutoCompleteTextView
+            android:id="@+id/ti_ed_room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_baseline_meeting_room_24"
+            android:drawablePadding="20dp"
+            android:inputType="none"
+            android:text="Room"
+            android:textColor="@color/hint_color"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
 
-<!-- DATE -->
-    <Button
-        android:id="@+id/btn_picker_date"
-        style="@style/Widget.MaterialComponents.TimePicker.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:padding="17dp"
-        android:text="Date"
-        android:textAlignment="viewStart"
-        android:textColor="#FF6F6F6F"
-        app:icon="@drawable/ic_baseline_edit_calendar_24"
-        app:iconPadding="19dp"
-        app:iconTint="#6F6F6F"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ti_layout_room" />
-    <!--<com.google.android.material.textfield.TextInputLayout
+<!-- DATE
+        <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ti_layout_date"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
@@ -86,28 +90,28 @@
             android:ems="10"
             android:hint="Date"
             android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout> -->
 
-    </com.google.android.material.textfield.TextInputLayout>
--->
-
-<!-- TIME -->
     <Button
-        android:id="@+id/btn_picker_time"
+        android:id="@+id/btn_picker_date"
         style="@style/Widget.MaterialComponents.TimePicker.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="17dp"
-        android:text="Time"
+        android:text="Date"
         android:textAlignment="viewStart"
-        android:textColor="#FF6F6F6F"
-        app:icon="@drawable/ic_baseline_access_time_24"
+        android:textColor="@color/hint_color"
+        app:icon="@drawable/ic_baseline_edit_calendar_24"
         app:iconPadding="19dp"
-        app:iconTint="#6F6F6F"
+        app:iconTint="@color/hint_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_picker_date" />
-    <!--<com.google.android.material.textfield.TextInputLayout
+        app:layout_constraintTop_toBottomOf="@id/ti_layout_room" />
+
+
+<!-- TIME
+        <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ti_layout_time"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
@@ -124,9 +128,25 @@
             android:ems="10"
             android:hint="Time"
             android:inputType="none" />
+    </com.google.android.material.textfield.TextInputLayout> -->
 
-    </com.google.android.material.textfield.TextInputLayout>
--->
+    <Button
+        android:id="@+id/btn_picker_time"
+        style="@style/Widget.MaterialComponents.TimePicker.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:padding="17dp"
+        android:text="Time"
+        android:textAlignment="viewStart"
+        android:textColor="@color/hint_color"
+        app:icon="@drawable/ic_baseline_access_time_24"
+        app:iconPadding="19dp"
+        app:iconTint="@color/hint_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_picker_date" />
+
 
 <!-- PARTICIPANTS -->
     <com.google.android.material.textfield.TextInputLayout
@@ -137,6 +157,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_picker_time">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ti_ed_participants"
             android:layout_width="match_parent"
@@ -150,7 +171,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-<!-- BTN CREATE -->
+<!-- BUTTON CREATE -->
     <Button
         android:id="@+id/button_create_meeting"
         style="?materialButtonStyle"

@@ -14,7 +14,7 @@ import java.util.Calendar;
 /**
  * Created by Lycast on 10/10/2021.
  */
-class TimePickerFragment extends DialogFragment {
+public class TimePickerFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {

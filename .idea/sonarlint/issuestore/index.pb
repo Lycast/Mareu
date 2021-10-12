@@ -30,8 +30,6 @@ z
 Japp/src/main/java/anthony/brenon/mareu/service/DummyMeetingApiService.java,2\5\25a668cadf05a4de925fc1fce17c4c110fabfce0
 p
 @app/src/main/java/anthony/brenon/mareu/service/MeetingsList.java,b\9\b90bb2048c19d39bfe5b9738b846c8f63c3b77fe
-i
-9app/src/main/java/anthony/brenon/mareu/model/Meeting.java,f\3\f37c910f1400c6f53d0b70e6ef19bdba78e04168
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 a
