@@ -13,9 +13,7 @@ import anthony.brenon.mareu.model.Meeting;
 public abstract class MeetingsList {
 
     public static List<Meeting> MEETINGS_LIST = Arrays.asList(
-            new Meeting("Financement", "tokyo", "toto@gegemail.com, titi@gegemail.com, hugue@gegemail.com", "12/12/2021"),
-            new Meeting("Webinar", "madrid", "toto@gegemail.com, titi@gegemail.com, hugue@gegemail.com", "12/12/2021"),
-            new Meeting("Raclette", "paris", "toto@gegemail.com, titi@gegemail.com, hugue@gegemail.com", "12/12/2021"));
+            new Meeting("Financement", "tokyo", "toto@gegemail.com, titi@gegemail.com, hugue@gegemail.com", "12/12/2021", "11 : 20", 0 -255- 0));
 
 
     static List<Meeting> generateMeetings() {

@@ -24,15 +24,11 @@ A
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-u
-Eapp/src/main/java/anthony/brenon/mareu/service/MeetingApiService.java,0\c\0c047d82e4b2b2df2310d1ce223c87ffeb766895
-z
-Japp/src/main/java/anthony/brenon/mareu/service/DummyMeetingApiService.java,2\5\25a668cadf05a4de925fc1fce17c4c110fabfce0
-p
-@app/src/main/java/anthony/brenon/mareu/service/MeetingsList.java,b\9\b90bb2048c19d39bfe5b9738b846c8f63c3b77fe
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 a
 1app/src/main/java/anthony/brenon/mareu/di/DI.java,e\1\e14498cf0a100d40f90ca63e528c20c9d4b64e4a
 m
 =app/src/main/java/anthony/brenon/mareu/callback/Listener.java,9\f\9ffbb09125a71894da9088d4b2aed77f1b929713
+v
+Fapp/src/main/java/anthony/brenon/mareu/ui_user/TimePickerFragment.java,5\f\5f9471b86b52c0a5526f7b350bdecf8e7b2dad0e

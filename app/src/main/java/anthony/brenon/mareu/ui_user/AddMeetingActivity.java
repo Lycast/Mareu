@@ -6,6 +6,7 @@ import androidx.fragment.app.DialogFragment;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Random;
 
 import anthony.brenon.mareu.R;
 import anthony.brenon.mareu.databinding.ActivityAddMeetingBinding;
@@ -24,7 +26,7 @@ import anthony.brenon.mareu.di.DI;
 import anthony.brenon.mareu.model.Meeting;
 import anthony.brenon.mareu.service.MeetingApiService;
 
-public class AddMeetingActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener, AdapterView.OnItemSelectedListener {
+public class AddMeetingActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
 
     private ActivityAddMeetingBinding binding;
     private Meeting meeting;
@@ -32,22 +34,16 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
 
     //list rooms
     public static final String[] ROOMS = new String[] {
-           "Berlin", "Londre", "Luxembourg", "Madrid", "Moscou", "Paris", "Pekin", "Rome", "Tokyo", "Washington"
+           "Berlin", "Londres", "Luxembourg", "Madrid", "Moscou", "Paris", "Pekin", "Rome", "Tokyo", "Washington"
     };
-
-    //list images rooms
-    public static final int CIRCLE_IMG[] = {
-            R.drawable.circleberlin, R.drawable.circlelondre, R.drawable.circleluxembourg, R.drawable.circlemadrid, R.drawable.circlemoscou,
-            R.drawable.circleparis, R.drawable.circlepekin, R.drawable.circlerome, R.drawable.circletokyo, R.drawable.circlewashington
-    };
-
-    int hour, minute;
-    String timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
+
+        Random rnd = new Random();
+        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
         getSupportActionBar().setTitle("Create new meeting");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -62,8 +58,11 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
         meeting = new Meeting(
                 binding.tiEdTopic.getText().toString(),
                 binding.tiEdRoom.getText().toString(),
+                binding.btnPickerDate.getText().toString(),
+                binding.btnPickerTime.getText().toString(),
                 binding.tiEdParticipants.getText().toString(),
-                binding.btnPickerDate.getText().toString());
+                color
+                );
 
         //listener PickerDate
         binding.btnPickerDate.setOnClickListener(new View.OnClickListener() {
@@ -111,22 +110,12 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-        String date = datePicker.getDayOfMonth() + " / " + datePicker.getMonth()+1 + " / " + datePicker.getYear();
+        String date = datePicker.getDayOfMonth() + " / " + (datePicker.getMonth()+1) + " / " + datePicker.getYear();
         binding.btnPickerDate.setText(date);
     }
 
     @Override
     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-        binding.btnPickerTime.setText(hour + " : " + minute);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        Toast.makeText(getApplicationContext(), ROOMS[i], Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-        //TODO ?
+        binding.btnPickerTime.setText(String.format("%02d", hour) + " : " + String.format("%02d", minute));
     }
 }

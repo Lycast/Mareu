@@ -48,6 +48,7 @@ public class ListMareuActivity extends AppCompatActivity implements Listener {
             startActivity(intent);
         });
     }
+
     /**
      * init activity
      */
@@ -67,6 +68,4 @@ public class ListMareuActivity extends AppCompatActivity implements Listener {
         adapter.notifyItemRemoved(position);
         adapter.notifyItemRangeChanged(position, meetings.size());
     }
-
-
 }

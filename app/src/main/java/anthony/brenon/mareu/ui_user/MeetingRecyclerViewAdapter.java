@@ -2,6 +2,8 @@ package anthony.brenon.mareu.ui_user;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -43,6 +46,7 @@ class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerVie
         Meeting meeting = meetings.get(position);
 
         String populateReport;
+        holder.binding.imgRowMeeting.setColorFilter(meeting.getColor(), PorterDuff.Mode.SRC_ATOP);
         Resources res = holder.itemView.getContext().getResources();
         populateReport = String.format(res.getString(R.string.meeting_populate), meeting.getTopic(), meeting.getTime(), meeting.getRoom());
 
