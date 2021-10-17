@@ -17,6 +17,9 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipDrawable;
+
 import java.util.Calendar;
 import java.util.Random;
 
@@ -54,16 +57,6 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ROOMS);
         binding.tiEdRoom.setAdapter(adapter);
 
-        //get populate meeting
-        meeting = new Meeting(
-                binding.tiEdTopic.getText().toString(),
-                binding.tiEdRoom.getText().toString(),
-                binding.btnPickerDate.getText().toString(),
-                binding.btnPickerTime.getText().toString(),
-                binding.tiEdParticipants.getText().toString(),
-                color
-                );
-
         //listener PickerDate
         binding.btnPickerDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,11 +74,29 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
             }
         });
 
+        //add participant listener
+        binding.btnAddParticipant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnAddParticipant(view);
+            }
+        });
+
         //listener create meeting
         binding.buttonCreateMeeting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //populate meeting
+                meeting = new Meeting(
+                        binding.tiEdTopic.getText().toString(),
+                        binding.tiEdRoom.getText().toString(),
+                        binding.tiEdParticipants.getText().toString(),
+                        binding.btnPickerDate.getText().toString(),
+                        binding.btnPickerTime.getText().toString(),
+                        color
+                );
                 service.createMeeting(meeting);
+                finish();
             }
         });
     }
@@ -110,12 +121,34 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-        String date = datePicker.getDayOfMonth() + " / " + (datePicker.getMonth()+1) + " / " + datePicker.getYear();
+        String date = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth()+1) + "/" + datePicker.getYear();
         binding.btnPickerDate.setText(date);
     }
 
     @Override
     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-        binding.btnPickerTime.setText(String.format("%02d", hour) + " : " + String.format("%02d", minute));
+        binding.btnPickerTime.setText(String.format("%02d", hour) + ":" + String.format("%02d", minute));
+    }
+
+    public void btnAddParticipant(View view) {
+        Chip chip = new Chip(this);
+        ChipDrawable drawable = ChipDrawable.createFromAttributes(this,null,0,R.style.Widget_MaterialComponents_Chip_Entry);
+        chip.setChipDrawable(drawable);
+        chip.setCheckable(false);
+        chip.setClickable(false);
+        chip.setChipIconResource(R.drawable.ic_baseline_contact_mail_24);
+        chip.setIconStartPadding(3f);
+        chip.setPadding(60,10,60,10);
+        chip.setText(binding.tiEdParticipants.getText().toString());
+
+        chip.setOnCloseIconClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.chipGroup.removeView(chip);
+            }
+        });
+
+        binding.chipGroup.addView(chip);
+        binding.tiEdParticipants.setText("");
     }
 }
