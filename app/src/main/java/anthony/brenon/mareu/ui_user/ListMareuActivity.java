@@ -39,6 +39,12 @@ public class ListMareuActivity extends AppCompatActivity implements Listener {
         binding.listMeetingsRecyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+    }
+
     /**
      * Open add meeting
      */
@@ -68,4 +74,6 @@ public class ListMareuActivity extends AppCompatActivity implements Listener {
         adapter.notifyItemRemoved(position);
         adapter.notifyItemRangeChanged(position, meetings.size());
     }
+
+    //init list
 }

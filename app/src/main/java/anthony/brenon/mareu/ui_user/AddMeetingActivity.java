@@ -9,11 +9,15 @@ import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -75,10 +79,14 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
         });
 
         //add participant listener
-        binding.btnAddParticipant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                btnAddParticipant(view);
+        binding.tiEdParticipants.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+
+                    addParticipant();
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -127,18 +135,16 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
 
     @Override
     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-        binding.btnPickerTime.setText(String.format("%02d", hour) + ":" + String.format("%02d", minute));
+        binding.btnPickerTime.setText(String.format("%02d", hour) + "h" + String.format("%02d", minute));
     }
 
-    public void btnAddParticipant(View view) {
+    private void addParticipant() {
+
         Chip chip = new Chip(this);
         ChipDrawable drawable = ChipDrawable.createFromAttributes(this,null,0,R.style.Widget_MaterialComponents_Chip_Entry);
         chip.setChipDrawable(drawable);
         chip.setCheckable(false);
-        chip.setClickable(false);
         chip.setChipIconResource(R.drawable.ic_baseline_contact_mail_24);
-        chip.setIconStartPadding(3f);
-        chip.setPadding(60,10,60,10);
         chip.setText(binding.tiEdParticipants.getText().toString());
 
         chip.setOnCloseIconClickListener(new View.OnClickListener() {

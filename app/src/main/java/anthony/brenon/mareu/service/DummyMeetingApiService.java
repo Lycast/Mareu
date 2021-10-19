@@ -9,7 +9,7 @@ import anthony.brenon.mareu.model.Meeting;
  */
 public class DummyMeetingApiService implements MeetingApiService{
 
-    private final List<Meeting> meetings = MeetingsList.generateMeetings();
+    private final List<Meeting> meetings = MeetingsListGenerator.generateMeetings();
 
     @Override
     public List<Meeting> getMeetingList() {
@@ -25,12 +25,14 @@ public class DummyMeetingApiService implements MeetingApiService{
     public void createMeeting(Meeting meeting) { meetings.add(meeting); }
 
     @Override
-    public List<Meeting> filterTimeList() {
+    public List<Meeting> filterDateList(String date) {
         return null;
     }
 
     @Override
-    public List<Meeting> filterRoomList() {
+    public List<Meeting> filterRoomList(String room) {
         return null;
     }
+
+
 }

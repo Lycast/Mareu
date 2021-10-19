@@ -11,8 +11,14 @@ import static org.junit.Assert.*;
  */
 public class UnitTest {
 
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
-    }
+    //Meeting list is not empty
+
+
+    //Meeting is deleted right
+
+
+    //Meeting is created right
+
+
+    //Meeting is populate right
 }
