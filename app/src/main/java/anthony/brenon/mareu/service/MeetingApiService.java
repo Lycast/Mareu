@@ -11,13 +11,11 @@ public interface MeetingApiService {
 
     List<Meeting> getMeetingList();
 
-    List<String> getRoom();
+    void deleteMeeting(Meeting meeting);
+
+    void createMeeting(Meeting meeting);
 
     List<Meeting> filterTimeList();
 
     List<Meeting> filterRoomList();
-
-    void deleteMeeting(Meeting meeting);
-
-    void createMeeting(Meeting meeting);
 }

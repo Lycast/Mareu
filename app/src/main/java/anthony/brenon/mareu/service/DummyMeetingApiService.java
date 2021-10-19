@@ -17,9 +17,12 @@ public class DummyMeetingApiService implements MeetingApiService{
     }
 
     @Override
-    public List<String> getRoom() {
-        return null;
+    public void deleteMeeting(Meeting meeting) {
+        meetings.remove(meeting);
     }
+
+    @Override
+    public void createMeeting(Meeting meeting) { meetings.add(meeting); }
 
     @Override
     public List<Meeting> filterTimeList() {
@@ -30,12 +33,4 @@ public class DummyMeetingApiService implements MeetingApiService{
     public List<Meeting> filterRoomList() {
         return null;
     }
-
-    @Override
-    public void deleteMeeting(Meeting meeting) {
-        meetings.remove(meeting);
-    }
-
-    @Override
-    public void createMeeting(Meeting meeting) { meetings.add(meeting); }
 }

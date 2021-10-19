@@ -2,16 +2,4 @@
     <string name="app_name">Ma réu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="meeting_populate">%1$s - %2$s - %3$s</string>
-    <string-array name="rooms">
-        <item>Browser</item>
-        <item>Luigi</item>
-        <item>Yoshi</item>
-        <item>Peach</item>
-        <item>Mario</item>
-        <item>Toad</item>
-        <item>Kong</item>
-        <item>Daisy</item>
-        <item>Waluigi</item>
-        <item>Wario</item>
-    </string-array>
 </resources>
