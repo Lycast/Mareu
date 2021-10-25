@@ -44,9 +44,7 @@ public class ListMareuActivity extends AppCompatActivity implements Listener, Da
         service = DI.getMeetingApiService();
         meetings = service.getMeetingList();
 
-        adapter = new MeetingRecyclerViewAdapter(meetings, this);
-        binding.listMeetingsRecyclerView.setAdapter(adapter);
-        binding.listMeetingsRecyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+        initList();
     }
 
     @Override
@@ -74,6 +72,12 @@ public class ListMareuActivity extends AppCompatActivity implements Listener, Da
         setContentView(view);
     }
 
+    private void initList() {
+        adapter = new MeetingRecyclerViewAdapter(meetings, this);
+        binding.listMeetingsRecyclerView.setAdapter(adapter);
+        binding.listMeetingsRecyclerView.setLayoutManager(new LinearLayoutManager(getBaseContext()));
+    }
+
     /**
      * remove a item in list
      * @param position
@@ -84,7 +88,6 @@ public class ListMareuActivity extends AppCompatActivity implements Listener, Da
         adapter.notifyItemRemoved(position);
         adapter.notifyItemRangeChanged(position, meetings.size());
     }
-
 
     //menu bar
     @Override
@@ -99,6 +102,7 @@ public class ListMareuActivity extends AppCompatActivity implements Listener, Da
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.room_filter:
+
                 return true;
             case R.id.date_filter:
                 DialogFragment datePicker = new DatePickerFragment();
@@ -109,21 +113,10 @@ public class ListMareuActivity extends AppCompatActivity implements Listener, Da
         }
     }
 
-    private void showDatePickerDialog() {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                this,
-                this,
-                Calendar.getInstance().get(Calendar.YEAR),
-                Calendar.getInstance().get(Calendar.MONTH),
-                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-        );
-        datePickerDialog.show();
-    }
-
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
         date = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth()+1) + "/" + datePicker.getYear();
         meetings = service.filterDateList(date);
-        adapter.notifyDataSetChanged();
+        initList();
     }
 }
