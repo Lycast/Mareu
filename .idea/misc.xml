@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/Mareu/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.35" />
+        <entry key="..\:/AndroidStudioProjects/Mareu/app/src/main/res/drawable/ic_sort_24.xml" value="0.43645833333333334" />
         <entry key="..\:/AndroidStudioProjects/Mareu/app/src/main/res/layout/activity_add_meeting.xml" value="0.42857142857142855" />
         <entry key="..\:/AndroidStudioProjects/Mareu/app/src/main/res/layout/activity_details_meeting.xml" value="0.275" />
         <entry key="..\:/AndroidStudioProjects/Mareu/app/src/main/res/layout/activity_list_mareu.xml" value="0.26296296296296295" />
@@ -12,6 +13,7 @@
         <entry key="..\:/AndroidStudioProjects/Mareu/app/src/main/res/layout/item_meeting.xml" value="0.42857142857142855" />
         <entry key="..\:/AndroidStudioProjects/Mareu/app/src/main/res/layout/item_spinner_rooms.xml" value="0.22327898550724637" />
         <entry key="..\:/AndroidStudioProjects/Mareu/app/src/main/res/layout/tooltbar_create_meeting.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/Mareu/app/src/main/res/menu/list_activity_menu.xml" value="0.4161458333333333" />
         <entry key="..\:/Users/Lycast/AndroidStudioProjects/Mareu/app/src/main/res/layout/activity_add_meeting.xml" value="0.39895833333333336" />
         <entry key="..\:/Users/Lycast/AndroidStudioProjects/Mareu/app/src/main/res/layout/activity_details_meeting.xml" value="0.22760416666666666" />
         <entry key="..\:/Users/Lycast/AndroidStudioProjects/Mareu/app/src/main/res/layout/activity_list_mareu.xml" value="0.42857142857142855" />

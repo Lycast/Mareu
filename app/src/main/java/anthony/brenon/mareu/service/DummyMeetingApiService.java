@@ -1,5 +1,6 @@
 package anthony.brenon.mareu.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import anthony.brenon.mareu.model.Meeting;
@@ -26,13 +27,23 @@ public class DummyMeetingApiService implements MeetingApiService{
 
     @Override
     public List<Meeting> filterDateList(String date) {
-        return null;
+        List<Meeting> meetingsByDate = new ArrayList<>();
+        for(Meeting meeting : meetings) {
+            if (meeting.getDate().equals(date)) {
+                meetingsByDate.add(meeting);
+            }
+        }
+        return meetingsByDate;
     }
 
     @Override
     public List<Meeting> filterRoomList(String room) {
-        return null;
+        List<Meeting> meetingsByRoom = new ArrayList<>();
+        for(Meeting meeting : meetings) {
+            if (meeting.getRoom().equals(room)) {
+                meetingsByRoom.add(meeting);
+            }
+        }
+        return meetingsByRoom;
     }
-
-
 }

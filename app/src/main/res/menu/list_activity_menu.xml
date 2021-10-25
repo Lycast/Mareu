@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/room_filter"
+        android:title="Room"
+        app:showAsAction="ifRoom">
+
+                <menu>
+                    <item
+                        android:id="@+id/room_berlin"
+                        android:title="Berlin"
+                        app:showAsAction="never"/>
+                    <item
+                        android:id="@+id/room_londre"
+                        android:title="Londre"
+                        app:showAsAction="never"/>
+                    <item
+                        android:id="@+id/room_luxembourg"
+                        android:title="Luxembourg"
+                        app:showAsAction="never"/>
+                    <item
+                        android:id="@+id/room_madrid"
+                        android:title="Madrid"
+                        app:showAsAction="never"/>
+                    <item
+                        android:id="@+id/room_moscou"
+                        android:title="Moscou"
+                        app:showAsAction="never"/>
+                    <item
+                        android:id="@+id/room_paris"
+                        android:title="Paris"
+                        app:showAsAction="never"/>
+                    <item
+                        android:id="@+id/room_pekin"
+                        android:title="Pekin"
+                        app:showAsAction="never"/>
+                    <item
+                        android:id="@+id/room_rome"
+                        android:title="Rome"
+                        app:showAsAction="never"/>
+                    <item
+                        android:id="@+id/room_tokyo"
+                        android:title="Tokyo"
+                        app:showAsAction="never"/>
+                    <item
+                        android:id="@+id/room_washington"
+                        android:title="Washington"
+                        app:showAsAction="never"/>
+
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/date_filter"
+        android:checkable="true"
+        android:title="Date"
+        app:showAsAction="ifRoom" />
+
+</menu>

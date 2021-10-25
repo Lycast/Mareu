@@ -3,18 +3,13 @@ package anthony.brenon.mareu.ui_user;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Adapter;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -24,7 +19,6 @@ import android.widget.Toast;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
 
-import java.util.Calendar;
 import java.util.Random;
 
 import anthony.brenon.mareu.R;
@@ -38,6 +32,7 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
     private ActivityAddMeetingBinding binding;
     private Meeting meeting;
     private MeetingApiService service;
+    String email;
 
     //list rooms
     public static final String[] ROOMS = new String[] {
@@ -65,7 +60,8 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
         binding.btnPickerDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDatePickerDialog();
+                DialogFragment datePicker = new DatePickerFragment();
+                datePicker.show(getSupportFragmentManager(), "datePicker");
             }
         });
 
@@ -82,8 +78,11 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
         binding.tiEdParticipants.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-
-                    addParticipant();
+                    if (isEmailValid(v.getText())){
+                        addParticipant();
+                    }else {
+                        Toast.makeText(getBaseContext(),getString(R.string.not_mail_valid), Toast.LENGTH_SHORT).show();
+                    }
                     return true;
                 }
                 return false;
@@ -94,11 +93,18 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
         binding.buttonCreateMeeting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //get chip group text
+                StringBuilder emailsText = new StringBuilder("");
+                for (int i = 0; i < binding.chipGroup.getChildCount(); i++) {
+                    String email = ((Chip) binding.chipGroup.getChildAt(i)).getText().toString();
+                    emailsText.append(email);
+                    emailsText.append(", ");
+                }
                 //populate meeting
                 meeting = new Meeting(
                         binding.tiEdTopic.getText().toString(),
                         binding.tiEdRoom.getText().toString(),
-                        binding.tiEdParticipants.getText().toString(),
+                        emailsText.toString(),
                         binding.btnPickerDate.getText().toString(),
                         binding.btnPickerTime.getText().toString(),
                         color
@@ -113,18 +119,6 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
         binding = ActivityAddMeetingBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-    }
-
-    //DatePicker
-    private void showDatePickerDialog() {
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                this,
-                this,
-                Calendar.getInstance().get(Calendar.YEAR),
-                Calendar.getInstance().get(Calendar.MONTH),
-                Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
-        );
-        datePickerDialog.show();
     }
 
     @Override
@@ -153,8 +147,11 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
                 binding.chipGroup.removeView(chip);
             }
         });
-
         binding.chipGroup.addView(chip);
         binding.tiEdParticipants.setText("");
+    }
+
+    private boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }

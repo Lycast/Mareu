@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Ma réu</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="meeting_populate">%1$s - %2$s - %3$s</string>
+    <string name="not_mail_valid">It is not a valid mail</string>
 </resources>
