@@ -97,17 +97,61 @@ public class ListMareuActivity extends AppCompatActivity implements Listener, Da
         return true;
     }
 
-    //TODO a completer
+    //TODO a optimiser
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.room_filter:
-
+            case R.id.room_berlin:
+                meetings = service.filterRoomList(getString(R.string.berlin));
+                initList();
                 return true;
+            case R.id.room_london:
+                meetings = service.filterRoomList(getString(R.string.london));
+                initList();
+                return true;
+            case R.id.room_luxembourg:
+                meetings = service.filterRoomList(getString(R.string.luxembourg));
+                initList();
+                return true;
+            case R.id.room_madrid:
+                meetings = service.filterRoomList(getString(R.string.madrid));
+                initList();
+                return true;
+            case R.id.room_moscow:
+                meetings = service.filterRoomList(getString(R.string.moscow));
+                initList();
+                return true;
+            case R.id.room_paris:
+                meetings = service.filterRoomList(getString(R.string.paris));
+                initList();
+                return true;
+            case R.id.room_beijing:
+                meetings = service.filterRoomList(getString(R.string.beijing));
+                initList();
+                return true;
+            case R.id.room_rome:
+                meetings = service.filterRoomList(getString(R.string.rome));
+                initList();
+                return true;
+            case R.id.room_tokyo:
+                meetings = service.filterRoomList(getString(R.string.tokyo));
+                initList();
+                return true;
+            case R.id.room_washington:
+                meetings = service.filterRoomList(getString(R.string.washington));
+                initList();
+                return true;
+
+
             case R.id.date_filter:
                 DialogFragment datePicker = new DatePickerFragment();
                 datePicker.show(getSupportFragmentManager(), "datePicker");
                 return true;
+
+            case R.id.reset_filter:
+                meetings = service.getMeetingList();
+                initList();
+
             default:
                 return super.onOptionsItemSelected(item);
         }

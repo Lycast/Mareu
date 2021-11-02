@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:paddingHorizontal="8dp"
     android:paddingVertical="5dp"
+    android:id="@+id/activity_add_meeting_layout"
     tools:context=".ui_user.AddMeetingActivity">
 
 
@@ -25,7 +26,7 @@
             android:drawableStart="@drawable/ic_baseline_notes_24"
             android:drawablePadding="20dp"
             android:ems="10"
-            android:hint="Topic"
+            android:hint="@string/topic"
             android:inputType="textPersonName" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -48,7 +49,7 @@
             android:drawableStart="@drawable/ic_baseline_meeting_room_24"
             android:drawablePadding="20dp"
             android:inputType="none"
-            android:text="Room"
+            android:text="@string/room"
             android:textColor="@color/hint_color"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -62,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="17dp"
-        android:text="Date"
+        android:text="@string/date"
         android:textAlignment="viewStart"
         android:textColor="@color/hint_color"
         app:icon="@drawable/ic_baseline_edit_calendar_24"
@@ -81,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="17dp"
-        android:text="Time"
+        android:text="@string/time"
         android:textAlignment="viewStart"
         android:textColor="@color/hint_color"
         app:icon="@drawable/ic_baseline_access_time_24"
@@ -109,7 +110,7 @@
                 android:drawableStart="@drawable/ic_baseline_people_24"
                 android:drawablePadding="20dp"
                 android:ems="10"
-                android:hint="Participants"
+                android:hint="@string/participants"
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress" />
 
@@ -136,7 +137,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingVertical="15dp"
-        android:text="CREATE"
+        android:text="@string/create"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

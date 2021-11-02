@@ -32,7 +32,6 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
     private ActivityAddMeetingBinding binding;
     private Meeting meeting;
     private MeetingApiService service;
-    String email;
 
     //list rooms
     public static final String[] ROOMS = new String[] {

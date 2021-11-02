@@ -2,4 +2,23 @@
     <string name="app_name">Ma réu</string>
     <string name="meeting_populate">%1$s - %2$s - %3$s</string>
     <string name="not_mail_valid">It is not a valid mail</string>
+    <string name="topic">Topic</string>
+    <string name="room">Room</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="participants">Participants</string>
+    <string name="create">CREATE</string>
+    <string name="berlin">Berlin</string>
+    <string name="london">Londres</string>
+    <string name="luxembourg">Luxembourg</string>
+    <string name="madrid">Madrid</string>
+    <string name="moscow">Moscou</string>
+    <string name="paris">Paris</string>
+    <string name="beijing">Pekin</string>
+    <string name="rome">Rome</string>
+    <string name="tokyo">Tokyo</string>
+    <string name="washington">Washington</string>
+    <string name="filter">Filter</string>
+    <string name="reset_filter">Reset filter</string>
+
 </resources>

@@ -38,7 +38,7 @@
         android:layout_marginTop="8dp"
         android:lines="1"
         android:ellipsize="end"
-        android:text="participant1, participant 2, participant 3, participant 4"
+        android:text=""
         app:layout_constraintEnd_toStartOf="@+id/img_row_delete"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@id/tv_row_report_meeting"
