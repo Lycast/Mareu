@@ -2,73 +2,65 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item
-        android:title="@string/filter"
-        android:icon="@drawable/ic_filter_list_24"
-        app:showAsAction="ifRoom">
 
-        <menu>
+            <item
+                android:id="@+id/date_filter"
+                android:title="@string/date"
+                app:showAsAction="never" />
 
-    <item
-        android:id="@+id/date_filter"
-        android:title="@string/date"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/room_filter"
-        android:title="@string/room"
-        app:showAsAction="never">
+            <item
+                android:id="@+id/room_filter"
+                android:title="@string/room"
+                app:showAsAction="never">
 
                 <menu>
                     <item
                         android:id="@+id/room_berlin"
                         android:title="@string/berlin"
-                        app:showAsAction="never"/>
+                        app:showAsAction="never" />
                     <item
                         android:id="@+id/room_london"
                         android:title="@string/london"
-                        app:showAsAction="never"/>
+                        app:showAsAction="never" />
                     <item
                         android:id="@+id/room_luxembourg"
                         android:title="@string/luxembourg"
-                        app:showAsAction="never"/>
+                        app:showAsAction="never" />
                     <item
                         android:id="@+id/room_madrid"
                         android:title="@string/madrid"
-                        app:showAsAction="never"/>
+                        app:showAsAction="never" />
                     <item
                         android:id="@+id/room_moscow"
                         android:title="@string/moscow"
-                        app:showAsAction="never"/>
+                        app:showAsAction="never" />
                     <item
                         android:id="@+id/room_paris"
                         android:title="@string/paris"
-                        app:showAsAction="never"/>
+                        app:showAsAction="never" />
                     <item
                         android:id="@+id/room_beijing"
                         android:title="@string/beijing"
-                        app:showAsAction="never"/>
+                        app:showAsAction="never" />
                     <item
                         android:id="@+id/room_rome"
                         android:title="@string/rome"
-                        app:showAsAction="never"/>
+                        app:showAsAction="never" />
                     <item
                         android:id="@+id/room_tokyo"
                         android:title="@string/tokyo"
-                        app:showAsAction="never"/>
+                        app:showAsAction="never" />
                     <item
                         android:id="@+id/room_washington"
                         android:title="@string/washington"
-                        app:showAsAction="never"/>
+                        app:showAsAction="never" />
 
-        </menu>
-    </item>
+                </menu>
+            </item>
 
             <item
                 android:id="@+id/reset_filter"
                 android:title="@string/reset_filter"
-                app:showAsAction="never"/>
+                app:showAsAction="never" />
 
-        </menu>
-    </item>
 </menu>

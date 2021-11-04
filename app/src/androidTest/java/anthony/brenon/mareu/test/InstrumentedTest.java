@@ -92,6 +92,17 @@ public class InstrumentedTest {
         Espresso.onView(ViewMatchers.withId(R.id.activity_add_meeting_layout)).check(matches(isDisplayed()));
         //test populate create meeting and create right back to list activity
         Espresso.onView(ViewMatchers.withId(R.id.ti_layout_topic)).perform(typeText("Topic test"));
-        
+        Espresso.onView(ViewMatchers.withId(R.id.ti_layout_room)).perform(click());
+        Espresso.onView(ViewMatchers.withContentDescription("Londres")).perform(click());
+        //->date
+        //Espresso.onView(ViewMatchers.withId(R.id.btn_picker_date)).perform(click());
+
+        //->time
+        //participants
+        //Espresso.onView(ViewMatchers.withId(R.id.ti_layout_participants)).perform(typeText("toto@gegemail.com"));
+        //press
+        Espresso.onView(ViewMatchers.withId(R.id.button_create_meeting)).perform(click());
+        Espresso.onView(ViewMatchers.withId(R.id.activity_list_ma_reu)).check(matches(isDisplayed()));
+        Espresso.onView(ViewMatchers.withId(R.id.activity_list_ma_reu)).check((matches(hasMinimumChildCount(1))));
     }
 }

@@ -49,7 +49,7 @@
             android:drawableStart="@drawable/ic_baseline_meeting_room_24"
             android:drawablePadding="20dp"
             android:inputType="none"
-            android:text="@string/room"
+            android:hint="@string/room"
             android:textColor="@color/hint_color"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="17dp"
-        android:text="@string/date"
+        android:hint="@string/date"
         android:textAlignment="viewStart"
         android:textColor="@color/hint_color"
         app:icon="@drawable/ic_baseline_edit_calendar_24"
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:padding="17dp"
-        android:text="@string/time"
+        android:hint="@string/time"
         android:textAlignment="viewStart"
         android:textColor="@color/hint_color"
         app:icon="@drawable/ic_baseline_access_time_24"

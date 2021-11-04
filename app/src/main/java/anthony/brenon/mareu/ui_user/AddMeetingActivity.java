@@ -27,24 +27,23 @@ import anthony.brenon.mareu.di.DI;
 import anthony.brenon.mareu.model.Meeting;
 import anthony.brenon.mareu.service.MeetingApiService;
 
-public class AddMeetingActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
+public class AddMeetingActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     private ActivityAddMeetingBinding binding;
     private Meeting meeting;
     private MeetingApiService service;
 
     //list rooms
-    public static final String[] ROOMS = new String[] {
-           "Berlin", "Londres", "Luxembourg", "Madrid", "Moscou", "Paris", "Pekin", "Rome", "Tokyo", "Washington"
+    public static final String[] ROOMS = new String[]{
+            "Berlin", "Londres", "Luxembourg", "Madrid", "Moscou", "Paris", "Pekin", "Rome", "Tokyo", "Washington"
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
-
-        Random rnd = new Random();
-        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        createMeetingListener();
+        addParticipantListener();
 
         getSupportActionBar().setTitle("Create new meeting");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -63,7 +62,6 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
                 datePicker.show(getSupportFragmentManager(), "datePicker");
             }
         });
-
         //listener PickerTime
         binding.btnPickerTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,23 +70,91 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
                 timePicker.show(getSupportFragmentManager(), "timePicker");
             }
         });
+    }
 
-        //add participant listener
+
+
+    /**
+     * initialise view
+      */
+    private void initView() {
+        binding = ActivityAddMeetingBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+    }
+
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+        String date = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
+        binding.btnPickerDate.setText(date);
+    }
+
+
+    @Override
+    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+        binding.btnPickerTime.setText(String.format("%02d", hour) + "h" + String.format("%02d", minute));
+    }
+
+
+    /**
+     * group chip add participant
+     */
+    private void addParticipant() {
+        Chip chip = new Chip(this);
+        ChipDrawable drawable = ChipDrawable.createFromAttributes(this, null, 0, R.style.Widget_MaterialComponents_Chip_Entry);
+        chip.setChipDrawable(drawable);
+        chip.setCheckable(false);
+        chip.setChipIconResource(R.drawable.ic_baseline_contact_mail_24);
+        chip.setText(binding.tiEdParticipants.getText().toString());
+
+        chip.setOnCloseIconClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.chipGroup.removeView(chip);
+            }
+        });
+        binding.chipGroup.addView(chip);
+        binding.tiEdParticipants.setText("");
+    }
+
+
+    /**
+     * email valid test
+     * @param email
+     * @return
+     */
+    private boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+
+    /**
+     * listener add participant
+     */
+    void addParticipantListener() {
         binding.tiEdParticipants.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    if (isEmailValid(v.getText())){
+                    if (isEmailValid(v.getText())) {
                         addParticipant();
-                    }else {
-                        Toast.makeText(getBaseContext(),getString(R.string.not_mail_valid), Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getBaseContext(), getString(R.string.not_mail_valid), Toast.LENGTH_SHORT).show();
                     }
                     return true;
                 }
                 return false;
             }
         });
+    }
 
-        //listener create meeting
+
+    /**
+     * Listener create meeting
+     */
+    private void createMeetingListener() {
+        Random rnd = new Random();
+        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         binding.buttonCreateMeeting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,45 +178,5 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
                 finish();
             }
         });
-    }
-
-    private void initView() {
-        binding = ActivityAddMeetingBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
-    }
-
-    @Override
-    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-        String date = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth()+1) + "/" + datePicker.getYear();
-        binding.btnPickerDate.setText(date);
-    }
-
-    @Override
-    public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-        binding.btnPickerTime.setText(String.format("%02d", hour) + "h" + String.format("%02d", minute));
-    }
-
-    private void addParticipant() {
-
-        Chip chip = new Chip(this);
-        ChipDrawable drawable = ChipDrawable.createFromAttributes(this,null,0,R.style.Widget_MaterialComponents_Chip_Entry);
-        chip.setChipDrawable(drawable);
-        chip.setCheckable(false);
-        chip.setChipIconResource(R.drawable.ic_baseline_contact_mail_24);
-        chip.setText(binding.tiEdParticipants.getText().toString());
-
-        chip.setOnCloseIconClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.chipGroup.removeView(chip);
-            }
-        });
-        binding.chipGroup.addView(chip);
-        binding.tiEdParticipants.setText("");
-    }
-
-    private boolean isEmailValid(CharSequence email) {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 }

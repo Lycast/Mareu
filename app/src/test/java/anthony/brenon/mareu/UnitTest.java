@@ -26,7 +26,6 @@ import anthony.brenon.mareu.service.MeetingsListGenerator;
 public class UnitTest {
 
     private MeetingApiService service;
-    Meeting meetingTest = new Meeting("Financement", "Londres", "toto@gegemail.com, titi@gegemail.com, hugue@gegemail.com", "12/12/2021", "11h20", 0 -255- 0);
 
         @Before
         public void setup() { service = DI.getNewInstanceApiService(); }
@@ -34,16 +33,14 @@ public class UnitTest {
         //Meeting list is not empty
         @Test
         public void getMeetingsWithSuccess() {
-            service.createMeeting(meetingTest);
             List<Meeting> meetings = service.getMeetingList();
             List<Meeting> expectedMeetings = MeetingsListGenerator.MEETINGS_LIST;
-            assertThat(meetings, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedMeetings.toArray()));
+            assertEquals(meetings, expectedMeetings);
         }
 
         //Meeting is deleted right
         @Test
         public void deleteMeetingWithSuccess() {
-            service.createMeeting(meetingTest);
             Meeting meetingToDelete = service.getMeetingList().get(0);
             service.deleteMeeting(meetingToDelete);
             assertFalse(service.getMeetingList().contains(meetingToDelete));
@@ -52,15 +49,18 @@ public class UnitTest {
         //Meeting is created right
         @Test
         public void meetingIsCreatedWithSuccess() {
+            Meeting meetingTest = new Meeting("RH", "Londres", "toto@gegemail.com, titi@gegemail.com, hugue@gegemail.com", "12/12/2021", "11h20", 0 -255- 0);
             service.createMeeting(meetingTest);
             assertTrue(service.getMeetingList().contains(meetingTest));
         }
 
 
-        //Meeting is populate right
+        //Meeting filter test
         @Test
-        public void meetingIsPopulateRight() {
-            service.createMeeting(meetingTest);
-            assertEquals("Financement", service.getMeetingList().get(0).getTopic());
+        public void getMeetingByRoomWithSuccess() {
+            List<Meeting> meetingsByRoom = service.filterRoomList("Tokyo");
+            assertFalse(meetingsByRoom.isEmpty());
+            List<Meeting> meetingsByRoomB = service.filterRoomList("");
+            assertTrue(meetingsByRoomB.isEmpty());
         }
 }
