@@ -55,12 +55,21 @@ public class UnitTest {
         }
 
 
-        //Meeting filter test
+        //Meeting filter by room test
         @Test
-        public void getMeetingByRoomWithSuccess() {
+        public void getMeetingByRoom_withSuccess() {
             List<Meeting> meetingsByRoom = service.filterRoomList("Tokyo");
             assertFalse(meetingsByRoom.isEmpty());
             List<Meeting> meetingsByRoomB = service.filterRoomList("");
             assertTrue(meetingsByRoomB.isEmpty());
+        }
+
+        //Meeting filter by date test
+        @Test
+        public void getMeetingByDate_withSuccess() {
+            List<Meeting> meetingsByDate = service.filterDateList("12/12/2021");
+            assertFalse((meetingsByDate.isEmpty()));
+            List<Meeting> meetingsByDateB = service.filterDateList("");
+            assertTrue((meetingsByDateB.isEmpty()));
         }
 }
