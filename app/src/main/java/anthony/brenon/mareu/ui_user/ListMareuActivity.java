@@ -1,6 +1,5 @@
 package anthony.brenon.mareu.ui_user;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,25 +7,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import anthony.brenon.mareu.R;
-import anthony.brenon.mareu.callback.Listener;
+import anthony.brenon.mareu.callback.OnDeleteClick;
 import anthony.brenon.mareu.databinding.ActivityListMareuBinding;
 import anthony.brenon.mareu.di.DI;
 import anthony.brenon.mareu.model.Meeting;
 import anthony.brenon.mareu.service.MeetingApiService;
 
-public class ListMareuActivity extends AppCompatActivity implements Listener, DatePickerDialog.OnDateSetListener {
+public class ListMareuActivity extends AppCompatActivity implements OnDeleteClick, DatePickerDialog.OnDateSetListener {
 
     private ActivityListMareuBinding binding;
 

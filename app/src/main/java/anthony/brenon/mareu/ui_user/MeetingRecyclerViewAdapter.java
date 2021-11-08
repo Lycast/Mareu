@@ -1,27 +1,19 @@
 package anthony.brenon.mareu.ui_user;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
 import anthony.brenon.mareu.R;
-import anthony.brenon.mareu.callback.Listener;
+import anthony.brenon.mareu.callback.OnDeleteClick;
 import anthony.brenon.mareu.databinding.ItemMeetingBinding;
-import anthony.brenon.mareu.di.DI;
 import anthony.brenon.mareu.model.Meeting;
-import anthony.brenon.mareu.service.MeetingApiService;
 
 /**
  * Created by Lycast on 16/09/2021.
@@ -29,9 +21,9 @@ import anthony.brenon.mareu.service.MeetingApiService;
 class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerViewAdapter.ViewHolder> {
 
     private List<Meeting> meetings;
-    private Listener callback;
+    private OnDeleteClick callback;
 
-    public MeetingRecyclerViewAdapter(List<Meeting> meetings, Listener callback) {
+    public MeetingRecyclerViewAdapter(List<Meeting> meetings, OnDeleteClick callback) {
         this.meetings = meetings;
         this.callback = callback;
     }

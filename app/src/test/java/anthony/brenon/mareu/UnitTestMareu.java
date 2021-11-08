@@ -1,6 +1,5 @@
 package anthony.brenon.mareu;
 
-import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +22,7 @@ import anthony.brenon.mareu.service.MeetingsListGenerator;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(JUnit4.class)
-public class UnitTest {
+public class UnitTestMareu {
 
     private MeetingApiService service;
 
