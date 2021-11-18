@@ -21,3 +21,17 @@ v
 Fapp/src/main/java/anthony/brenon/mareu/ui_user/TimePickerFragment.java,5\f\5f9471b86b52c0a5526f7b350bdecf8e7b2dad0e
 @
 app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
+i
+9app/src/main/java/anthony/brenon/mareu/model/Meeting.java,f\3\f37c910f1400c6f53d0b70e6ef19bdba78e04168
+}
+Mapp/src/androidTest/java/anthony/brenon/mareu/test/InstrumentedTestMareu.java,d\c\dc4a2bae79e2fbe76ea4e16dd3f31099ca54ecb2
+i
+9app/src/test/java/anthony/brenon/mareu/UnitTestMareu.java,d\c\dc5286ed3fe04db629faada1458e97f20084edad
+y
+Iapp/src/androidTest/java/anthony/brenon/mareu/utils/DeleteViewAction.java,9\9\99c6d7373689a3854c254ece2a89db548aac0c5c
+‡
+Wapp/src/androidTest/java/anthony/brenon/mareu/utils/RecyclerViewItemCountAssertion.java,1\6\16c4e3dfd1e64bee97b6948e98e4a96528bb5a74
+y
+Iapp/src/main/java/anthony/brenon/mareu/service/MeetingsListGenerator.java,6\3\63c4448daa55b309df494b8eb2174040b6f0c551
+v
+Fapp/src/main/java/anthony/brenon/mareu/ui_user/AddMeetingActivity.java,4\1\41980bcf8fb18903894e2bec5dbc82f3a5bf167a
