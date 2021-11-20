@@ -35,9 +35,11 @@ import androidx.test.rule.ActivityTestRule;
 
 import org.hamcrest.Matchers;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 
 import anthony.brenon.mareu.R;
 import anthony.brenon.mareu.di.DI;
@@ -50,11 +52,11 @@ import anthony.brenon.mareu.utils.DeleteViewAction;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-@RunWith(AndroidJUnit4.class)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class InstrumentedTestMareu {
 
     // This is fixed
-    private static int ITEMS_COUNT = 1;
+    private static int ITEMS_COUNT = 2;
 
     private ListMareuActivity activity;
     private MeetingApiService service;
@@ -76,28 +78,21 @@ public class InstrumentedTestMareu {
 
     }
 
-    /**
-     * We ensure that our recyclerview is displaying at least on item
-     */
     @Test
-    public void myMeetingsList_shouldNotBeEmpty() {
-        // First scroll to the position that needs to be matched and click on it.
-        onView(withId(R.id.activity_list_ma_reu))
-                .check(matches(hasMinimumChildCount(1)));
+    public void filterDate_withSuccess() {
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        onView(withText("Date")).perform(click());
+        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(2021,12,12));
+        onView(withId(android.R.id.button1)).perform(click());
+        onView(withId(R.id.list_meetings_recycler_view)).check((withItemCount(1)));
     }
 
-    /**
-     * When we delete an item, the item is no more shown
-     */
     @Test
-    public void myNeighboursList_deleteAction_shouldRemoveItem() {
-        // Given : We remove the element at position
-        onView(ViewMatchers.withId(R.id.list_meetings_recycler_view)).check(withItemCount(ITEMS_COUNT));
-        // When perform a click on a delete icon
-        onView(ViewMatchers.withId(R.id.list_meetings_recycler_view))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(0, new DeleteViewAction()));
-        // Then : the number of element is 11
-        onView(ViewMatchers.withId(R.id.list_meetings_recycler_view)).check(withItemCount(ITEMS_COUNT -1));
+    public void filterRoom_withSuccess() {
+        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());
+        onView(withText("Room")).perform(click());
+        onView(withText("Tokyo")).perform(click());
+        onView(withId(R.id.list_meetings_recycler_view)).check((withItemCount(1)));
     }
 
     /**
@@ -111,7 +106,7 @@ public class InstrumentedTestMareu {
 
         //test populate create meeting and create right back to list activity
         onView(withId(R.id.ti_ed_topic)).perform(replaceText("Topic test"));
-        
+
         //chek return meeting list
         onView(withId(R.id.btn_picker_date)).perform(click());
         onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(2022,10,12));
@@ -131,20 +126,27 @@ public class InstrumentedTestMareu {
         onView(withId(R.id.list_meetings_recycler_view)).check((matches(hasChildCount(2))));
     }
 
+    /**
+     * We ensure that our recyclerview is displaying at least on item
+     */
     @Test
-    public void filterDate_withSuccess() {
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());
-        onView(withText("Date")).perform(click());
-        onView(withClassName(Matchers.equalTo(DatePicker.class.getName()))).perform(PickerActions.setDate(2021,12,12));
-        onView(withId(android.R.id.button1)).perform(click());
-        onView(withId(R.id.list_meetings_recycler_view)).check((withItemCount(1)));
+    public void myMeetingsList_shouldNotBeEmpty() {
+        // First scroll to the position that needs to be matched and click on it.
+        onView(withId(R.id.activity_list_ma_reu))
+                .check(matches(hasMinimumChildCount(1)));
     }
 
+    /**
+     * When we delete an item, the item is no more shown
+     */
     @Test
-    public void filterRoom_withSuccess() {
-        openActionBarOverflowOrOptionsMenu(InstrumentationRegistry.getInstrumentation().getTargetContext());
-        onView(withText("Room")).perform(click());
-        onView(withText("Tokyo")).perform(click());
-        onView(withId(R.id.list_meetings_recycler_view)).check((withItemCount(1)));
+    public void myNeighboursList_deleteAction_shouldRemoveItem() {
+        // Given : We check list with ITEM COUNT
+        onView(ViewMatchers.withId(R.id.list_meetings_recycler_view)).check(withItemCount(ITEMS_COUNT));
+        // When perform a click on a delete icon
+        onView(ViewMatchers.withId(R.id.list_meetings_recycler_view))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, new DeleteViewAction()));
+        // Then : the number of element is 1
+        onView(ViewMatchers.withId(R.id.list_meetings_recycler_view)).check(withItemCount(ITEMS_COUNT -1));
     }
 }
