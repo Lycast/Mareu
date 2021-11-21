@@ -4,18 +4,13 @@ Welcome to my project number four of my formation developer android application.
 For this project we create a application of meeting for a business.
 
 For download this application you can click [here](https://github.com/Lycast/Mareu/archive/refs/heads/main.zip)
-Or at my home page click on  download  
-![IMG](https://i.postimg.cc/Y9GTf0qq/readme-img-1.jpg)
+Or from the web page click download as the picture shows 
+![IMG](https://i.postimg.cc/Zqgnbwf7/readme-img-1.jpg)
 
-you go on your android studio now and click on open project 
+Now go to android studio and click on open project
+![IMG](https://i.postimg.cc/FzXKc7X0/readme-img-open-project.jpg)
 
-IMAGE
+Wait a moment for build project
 
-wait a little time for build project by your IDE 
-you can launch project as on screenshot 
-
-select app IMAGE
-
-select your devices IMAGE
-
-click here 
+You can launch the project as shown in the picture
+![IMG](https://i.postimg.cc/FRLR7089/readme-img-launch-project.jpg)
