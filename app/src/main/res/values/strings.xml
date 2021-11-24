@@ -20,5 +20,20 @@
     <string name="washington">Washington</string>
     <string name="filter">Filter</string>
     <string name="reset_filter">Reset filter</string>
+    <string name="create_meeting">Create new meeting</string>
+
+    <string-array name="list_room">
+        <item>Berlin</item>
+        <item>Londres</item>
+        <item>Luxembourg</item>
+        <item>Madrid</item>
+        <item>Moscou</item>
+        <item>Paris</item>
+        <item>Pekin</item>
+        <item>Rome</item>
+        <item>Tokyo</item>
+        <item>Washington</item>
+    </string-array>
+
 
 </resources>

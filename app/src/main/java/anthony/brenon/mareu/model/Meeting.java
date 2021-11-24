@@ -1,7 +1,5 @@
 package anthony.brenon.mareu.model;
 
-import android.graphics.Color;
-
 import java.io.Serializable;
 
 /**

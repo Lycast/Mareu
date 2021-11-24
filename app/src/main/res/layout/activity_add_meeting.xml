@@ -117,7 +117,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-<!-- CHIP -->
+<!-- CHIP_GROUP -->
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chip_group"
         android:layout_width="match_parent"

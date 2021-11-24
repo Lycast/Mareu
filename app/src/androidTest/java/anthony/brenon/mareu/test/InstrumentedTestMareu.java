@@ -57,11 +57,7 @@ public class InstrumentedTestMareu {
     private static int ITEMS_COUNT = 2;
 
     private ListMareuActivity activity;
-    private MeetingApiService service;
 
-    public void insertTextIntoInput(Integer inputId, String text) {
-        onView(withId(inputId)).perform(typeText(text));
-    }
 
     @Rule
     public ActivityTestRule<ListMareuActivity> activityRule =
@@ -71,8 +67,6 @@ public class InstrumentedTestMareu {
     public void setUp() {
         activity = activityRule.getActivity();
         assertThat(activity, notNullValue());
-
-        service = DI.getNewInstanceApiService();
 
     }
 

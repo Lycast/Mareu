@@ -33,27 +33,26 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
     private Meeting meeting;
     private MeetingApiService service;
 
-    //list rooms
-    public static final String[] ROOMS = new String[]{
-            "Berlin", "Londres", "Luxembourg", "Madrid", "Moscou", "Paris", "Pekin", "Rome", "Tokyo", "Washington"
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
         createMeetingListener();
         addParticipantListener();
+        implementsListeners();
 
-        getSupportActionBar().setTitle("Create new meeting");
+        getSupportActionBar().setTitle(R.string.create_meeting);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         service = DI.getMeetingApiService();
 
         //autoComplete rooms list
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ROOMS);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.list_room));
         binding.tiEdRoom.setAdapter(adapter);
+    }
 
+
+    private void implementsListeners() {
         //listener PickerDate
         binding.btnPickerDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,11 +71,9 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
         });
     }
 
-
-
     /**
      * initialise view
-      */
+     */
     private void initView() {
         binding = ActivityAddMeetingBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -132,7 +129,7 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
     /**
      * listener add participant
      */
-    void addParticipantListener() {
+    private void addParticipantListener() {
         binding.tiEdParticipants.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {

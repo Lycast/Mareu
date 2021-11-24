@@ -29,7 +29,6 @@ public class ListMareuActivity extends AppCompatActivity implements OnDeleteClic
     private MeetingApiService service;
     private List<Meeting> meetings;
     private MeetingRecyclerViewAdapter adapter;
-    String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +118,7 @@ public class ListMareuActivity extends AppCompatActivity implements OnDeleteClic
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-        date = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth()+1) + "/" + datePicker.getYear();
+        String date = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth()+1) + "/" + datePicker.getYear();
         meetings = service.filterDateList(date);
         initList();
     }

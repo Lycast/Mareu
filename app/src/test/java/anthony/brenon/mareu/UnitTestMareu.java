@@ -27,7 +27,7 @@ public class UnitTestMareu {
     private MeetingApiService service;
 
         @Before
-        public void setup() { service = DI.getNewInstanceApiService(); }
+        public void setup() { service = DI.getMeetingApiService(); }
 
         //Meeting list is not empty
         @Test

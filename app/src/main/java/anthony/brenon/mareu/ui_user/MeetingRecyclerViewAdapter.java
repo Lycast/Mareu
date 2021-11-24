@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -20,16 +21,17 @@ import anthony.brenon.mareu.model.Meeting;
  */
 class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerViewAdapter.ViewHolder> {
 
-    private List<Meeting> meetings;
-    private OnDeleteClick callback;
+    private final List<Meeting> meetings;
+    private final OnDeleteClick callback;
 
     public MeetingRecyclerViewAdapter(List<Meeting> meetings, OnDeleteClick callback) {
         this.meetings = meetings;
         this.callback = callback;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new ViewHolder(ItemMeetingBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
     }
 
@@ -53,7 +55,7 @@ class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerVie
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private ItemMeetingBinding binding;
+        private final ItemMeetingBinding binding;
 
         public ViewHolder(ItemMeetingBinding binding) {
             super(binding.getRoot());
