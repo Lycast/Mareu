@@ -30,7 +30,6 @@ import anthony.brenon.mareu.service.MeetingApiService;
 public class AddMeetingActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     private ActivityAddMeetingBinding binding;
-    private Meeting meeting;
     private MeetingApiService service;
     private StringBuilder emailsText;
 
@@ -149,7 +148,7 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
         Random rnd = new Random();
         int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 
-        meeting = new Meeting(
+        Meeting meeting = new Meeting(
                 Objects.requireNonNull(binding.tiEdTopic.getText()).toString(),
                 binding.tiEdRoom.getText().toString(),
                 emailsText.toString(),
