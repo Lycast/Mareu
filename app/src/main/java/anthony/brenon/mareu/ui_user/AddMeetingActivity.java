@@ -3,22 +3,22 @@ package anthony.brenon.mareu.ui_user;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
 
+import java.util.Objects;
 import java.util.Random;
 
 import anthony.brenon.mareu.R;
@@ -32,148 +32,131 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
     private ActivityAddMeetingBinding binding;
     private Meeting meeting;
     private MeetingApiService service;
+    private StringBuilder emailsText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initView();
-        createMeetingListener();
         addParticipantListener();
         implementsListeners();
+        createMeetingListener();
 
-        getSupportActionBar().setTitle(R.string.create_meeting);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(R.string.create_meeting);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         service = DI.getMeetingApiService();
 
         //autoComplete rooms list
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.list_room));
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.list_room));
         binding.tiEdRoom.setAdapter(adapter);
     }
 
-
+    // implements listener date picker and time picker
     private void implementsListeners() {
         //listener PickerDate
-        binding.btnPickerDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DialogFragment datePicker = new DatePickerFragment();
-                datePicker.show(getSupportFragmentManager(), "datePicker");
-            }
+        binding.btnPickerDate.setOnClickListener(view -> {
+            DialogFragment datePicker = new DatePickerFragment();
+            datePicker.show(getSupportFragmentManager(), "datePicker");
         });
         //listener PickerTime
-        binding.btnPickerTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DialogFragment timePicker = new TimePickerFragment();
-                timePicker.show(getSupportFragmentManager(), "timePicker");
-            }
+        binding.btnPickerTime.setOnClickListener(view -> {
+            DialogFragment timePicker = new TimePickerFragment();
+            timePicker.show(getSupportFragmentManager(), "timePicker");
         });
     }
 
-    /**
-     * initialise view
-     */
+    // initialisation view
     private void initView() {
         binding = ActivityAddMeetingBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
     }
 
-
+    // set date picker
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
         String date = datePicker.getDayOfMonth() + "/" + (datePicker.getMonth() + 1) + "/" + datePicker.getYear();
         binding.btnPickerDate.setText(date);
     }
 
-
+    // set time picker
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
         binding.btnPickerTime.setText(String.format("%02d", hour) + "h" + String.format("%02d", minute));
     }
 
-
-    /**
-     * group chip add participant
-     */
+    // add participant with chip group
     private void addParticipant() {
         Chip chip = new Chip(this);
         ChipDrawable drawable = ChipDrawable.createFromAttributes(this, null, 0, R.style.Widget_MaterialComponents_Chip_Entry);
         chip.setChipDrawable(drawable);
         chip.setCheckable(false);
         chip.setChipIconResource(R.drawable.ic_baseline_contact_mail_24);
-        chip.setText(binding.tiEdParticipants.getText().toString());
+        chip.setText(Objects.requireNonNull(binding.tiEdParticipants.getText()).toString());
 
-        chip.setOnCloseIconClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.chipGroup.removeView(chip);
-            }
-        });
+        chip.setOnCloseIconClickListener(view -> binding.chipGroup.removeView(chip));
         binding.chipGroup.addView(chip);
         binding.tiEdParticipants.setText("");
     }
 
-
-    /**
-     * email valid test
-     * @param email
-     * @return
-     */
+    //check if mail is valid
     private boolean isEmailValid(CharSequence email) {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
-
-    /**
-     * listener add participant
-     */
+    // listener for add participants
     private void addParticipantListener() {
-        binding.tiEdParticipants.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    if (isEmailValid(v.getText())) {
-                        addParticipant();
-                    } else {
-                        Toast.makeText(getBaseContext(), getString(R.string.not_mail_valid), Toast.LENGTH_SHORT).show();
-                    }
-                    return true;
+        binding.tiEdParticipants.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                if (isEmailValid(v.getText())) {
+                    addParticipant();
+                } else {
+                    Toast.makeText(getBaseContext(), getString(R.string.not_mail_valid), Toast.LENGTH_SHORT).show();
                 }
-                return false;
+                return true;
+            }
+            return false;
+        });
+    }
+
+    // listener for create meeting
+    private void createMeetingListener() {
+        binding.buttonCreateMeeting.setOnClickListener(view -> {
+            //get chip group text
+            emailsText = new StringBuilder();
+            for (int i = 0; i < binding.chipGroup.getChildCount(); i++) {
+                String email = ((Chip) binding.chipGroup.getChildAt(i)).getText().toString();
+                emailsText.append(email);
+                emailsText.append(", ");
+            }
+            if (!Objects.requireNonNull(binding.tiEdTopic.getText()).toString().isEmpty() &&
+                    !binding.tiEdRoom.getText().toString().isEmpty() &&
+                    !emailsText.toString().isEmpty() &&
+                    !binding.btnPickerDate.getText().toString().isEmpty() &&
+                    !binding.btnPickerTime.getText().toString().isEmpty()) {
+                    populateMeeting ();
+                    finish();
+            } else {
+                Toast.makeText(this, R.string.create_meeting_is_empty, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-
-    /**
-     * Listener create meeting
-     */
-    private void createMeetingListener() {
+    //populate meeting
+    private void populateMeeting () {
         Random rnd = new Random();
         int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-        binding.buttonCreateMeeting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //get chip group text
-                StringBuilder emailsText = new StringBuilder("");
-                for (int i = 0; i < binding.chipGroup.getChildCount(); i++) {
-                    String email = ((Chip) binding.chipGroup.getChildAt(i)).getText().toString();
-                    emailsText.append(email);
-                    emailsText.append(", ");
-                }
-                //populate meeting
-                meeting = new Meeting(
-                        binding.tiEdTopic.getText().toString(),
-                        binding.tiEdRoom.getText().toString(),
-                        emailsText.toString(),
-                        binding.btnPickerDate.getText().toString(),
-                        binding.btnPickerTime.getText().toString(),
-                        color
-                );
-                service.createMeeting(meeting);
-                finish();
-            }
-        });
+
+        meeting = new Meeting(
+                Objects.requireNonNull(binding.tiEdTopic.getText()).toString(),
+                binding.tiEdRoom.getText().toString(),
+                emailsText.toString(),
+                binding.btnPickerDate.getText().toString(),
+                binding.btnPickerTime.getText().toString(),
+                color
+        );
+        service.createMeeting(meeting);
     }
 }

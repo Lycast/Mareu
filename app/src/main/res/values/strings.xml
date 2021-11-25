@@ -21,6 +21,7 @@
     <string name="filter">Filter</string>
     <string name="reset_filter">Reset filter</string>
     <string name="create_meeting">Create new meeting</string>
+    <string name="create_meeting_is_empty">Please complete all information before create a meeting</string>
 
     <string-array name="list_room">
         <item>Berlin</item>

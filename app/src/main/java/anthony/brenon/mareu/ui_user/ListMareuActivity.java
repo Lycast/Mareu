@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -42,6 +43,7 @@ public class ListMareuActivity extends AppCompatActivity implements OnDeleteClic
         initList();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onResume() {
         super.onResume();
@@ -75,7 +77,7 @@ public class ListMareuActivity extends AppCompatActivity implements OnDeleteClic
 
     /**
      * remove a item in list
-     * @param position
+     * @param position *
      */
     @Override
     public void onClickDeleteButton(int position) {
@@ -92,6 +94,7 @@ public class ListMareuActivity extends AppCompatActivity implements OnDeleteClic
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
