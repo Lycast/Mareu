@@ -14,7 +14,6 @@ public class Meeting implements Serializable {
     private String time;
     private int color;
 
-
     //Construct
     public Meeting(String topic, String room, String participants,String date, String time, int color) {
         this.topic = topic;

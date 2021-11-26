@@ -3,11 +3,11 @@ package anthony.brenon.mareu.ui_user;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
@@ -18,6 +18,10 @@ import android.widget.Toast;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipDrawable;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+
+import java.util.Calendar;
 import java.util.Objects;
 import java.util.Random;
 
@@ -80,10 +84,9 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
     }
 
     // set time picker
-    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     @Override
     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-        binding.btnPickerTime.setText(String.format("%02d", hour) + "h" + String.format("%02d", minute));
+        binding.btnPickerTime.setText(getString(R.string.date_info, hour, minute));
     }
 
     // add participant with chip group
@@ -135,12 +138,23 @@ public class AddMeetingActivity extends AppCompatActivity implements DatePickerD
                     !emailsText.toString().isEmpty() &&
                     !binding.btnPickerDate.getText().toString().isEmpty() &&
                     !binding.btnPickerTime.getText().toString().isEmpty()) {
-                    populateMeeting ();
-                    finish();
+                    checkRoomIsFree();
             } else {
                 Toast.makeText(this, R.string.create_meeting_is_empty, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    //check room is free
+    public void checkRoomIsFree() {
+        DateTime timeMeeting = DateTime.parse(binding.btnPickerTime.getText().toString(),
+                DateTimeFormat.forPattern("HH:mm"));
+            if (service.roomIsFree(binding.tiEdRoom.getText().toString(), binding.btnPickerDate.getText().toString(), timeMeeting)) {
+                populateMeeting();
+                finish();
+            } else {
+                Toast.makeText(this, R.string.create_meeting_room_is_not_free, Toast.LENGTH_SHORT).show();
+            }
     }
 
     //populate meeting

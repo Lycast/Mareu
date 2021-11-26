@@ -43,11 +43,10 @@ public class ListMareuActivity extends AppCompatActivity implements OnDeleteClic
         initList();
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     @Override
     protected void onResume() {
         super.onResume();
-        adapter.notifyDataSetChanged();
+        adapter.notifyItemChanged(meetings.size() -1 );
     }
 
     /**

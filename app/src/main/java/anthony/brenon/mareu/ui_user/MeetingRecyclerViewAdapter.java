@@ -42,7 +42,7 @@ class MeetingRecyclerViewAdapter extends RecyclerView.Adapter<MeetingRecyclerVie
         String populateReport;
         holder.binding.imgRowMeeting.setColorFilter(meeting.getColor(), PorterDuff.Mode.SRC_ATOP);
         Resources res = holder.itemView.getContext().getResources();
-        populateReport = String.format(res.getString(R.string.meeting_populate), meeting.getTopic(), meeting.getTime(), meeting.getRoom());
+        populateReport = String.format(res.getString(R.string.meeting_populate), meeting.getTopic(), meeting.getTime().replace(":", "h"), meeting.getRoom());
         holder.binding.tvRowReportMeeting.setText(populateReport);
 
         holder.binding.tvRowParticipant.setText(meeting.getParticipants());

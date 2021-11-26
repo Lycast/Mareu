@@ -12,7 +12,7 @@ import anthony.brenon.mareu.model.Meeting;
 public abstract class MeetingsListGenerator {
 
     public static List<Meeting> MEETINGS_LIST = Collections.singletonList(
-            new Meeting("Financement", "Tokyo", "toto@gegemail.com, titi@gegemail.com, hugue@gegemail.com", "12/12/2021", "11h20", -255));
+            new Meeting("Financement", "Tokyo", "toto@gegemail.com, titi@gegemail.com, hugue@gegemail.com", "12/12/2021", "11:20", -255));
 
     static List<Meeting> generateMeetings() {
         return new ArrayList<>(MEETINGS_LIST);

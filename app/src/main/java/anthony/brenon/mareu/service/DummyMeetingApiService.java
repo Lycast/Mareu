@@ -1,5 +1,10 @@
 package anthony.brenon.mareu.service;
 
+
+
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,4 +52,19 @@ public class DummyMeetingApiService implements MeetingApiService{
             }
             return meetingsByRoom;
         }
+
+    @Override
+    public boolean roomIsFree(String room, String date, DateTime time) {
+        for (Meeting meeting : meetings) {
+            if (meeting.getRoom().equals(room) && meeting.getDate().equals(date)) {
+                DateTime timeMeeting = DateTime.parse(meeting.getTime(),
+                        DateTimeFormat.forPattern("HH:mm"));
+                DateTime timeMeetingStart = timeMeeting.minusMinutes(45);
+                DateTime timeMeetingEnd = timeMeeting.plusMinutes(45);
+                if (time.isAfter(timeMeetingStart) && time.isBefore(timeMeetingEnd)) {
+                    return false;
+                }
+            }
+        }return true;
+    }
 }
