@@ -1,6 +1,7 @@
 # Mareu
 
 Welcome to my project number four of my formation developer android application.
+
 For this project we create a application of meeting for a business.
 
 ---
@@ -14,7 +15,9 @@ For this project we create a application of meeting for a business.
 # Library
 
 [Androidx](https://developer.android.com/jetpack/androidx)
+
 [Joda Time](https://www.joda.org/joda-time/dependency-info.html)
+
 [Espresso](https://developer.android.com/training/testing/espresso)
 
 # Launch into android studio
